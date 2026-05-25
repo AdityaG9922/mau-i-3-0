@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabrication Works — Mauli Kitchen Trolly & Fabricators</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --gold:   #C8963E; --gold2: #E8B84B;
+  --dark:   #1A1208; --warm:  #7A5230;
+  --steel:  #2A3550; --steel2:#3B6FD4;
+  --cream:  #FAF7F2; --white: #FFFFFF;
+  --text:   #2C1A08; --muted: #8A7060;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* Ambient */
+.ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.ab { position: absolute; border-radius: 50%; filter: blur(90px); animation: abFade 14s ease-in-out infinite; }
+.ab1 { width: 450px; height: 450px; background: rgba(59,111,212,0.06); top: -80px; right: -80px; animation-delay: 0s; }
+.ab2 { width: 400px; height: 400px; background: rgba(123,79,212,0.05); bottom: 30%; left: -60px; animation-delay: 5s; }
+.ab3 { width: 350px; height: 350px; background: rgba(43,188,212,0.04); bottom: 5%; right: 20%; animation-delay: 9s; }
+@keyframes abFade { 0%,100%{opacity:0} 50%{opacity:1} }
+
+/* Nav */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(59,111,212,0.12);
+  padding: 0 5%; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+}
+.nav-brand { font-family: 'Playfair Display',serif; font-size: 18px; font-weight: 700; color: var(--dark); }
+.nav-brand span { display: block; font-size: 10px; letter-spacing: 3px; color: var(--gold); font-family: 'DM Sans',sans-serif; font-weight: 600; text-transform: uppercase; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--steel), var(--steel2));
+  color: white; padding: 9px 20px; border-radius: 7px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; box-shadow: 0 3px 12px rgba(59,111,212,0.3);
+}
+.back-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(59,111,212,0.45); }
+
+/* Hero Banner */
+.page-hero {
+  background: var(--steel);
+  padding: 80px 5% 70px;
+  text-align: center; position: relative; z-index: 1; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(59,111,212,0.25), transparent 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(200,150,62,0.1), transparent 60%);
+}
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+.page-hero h1 {
+  font-family: 'Playfair Display',serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 900; color: white; line-height: 1.15; margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+.page-hero h1 em { color: var(--gold2); font-style: normal; }
+.hero-tagline {
+  display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 12px;
+  position: relative; z-index: 1;
+}
+.hero-tagline span { color: rgba(255,255,255,0.8); }
+.hero-tagline span::before { content: '·'; margin-right: 8px; color: var(--gold2); }
+.hero-tagline span:first-child::before { display: none; }
+.hero-line { width: 60px; height: 3px; background: linear-gradient(90deg, var(--steel2), var(--gold)); margin: 20px auto 0; border-radius: 99px; position: relative; z-index: 1; }
+
+/* Group nav pills */
+.group-nav {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  padding: 28px 5%;
+  background: rgba(42,53,80,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(59,111,212,0.2);
+  position: sticky; top: 68px; z-index: 90;
+}
+.group-pill {
+  padding: 8px 20px; border-radius: 99px;
+  background: rgba(255,255,255,0.05); border: 1.5px solid rgba(59,111,212,0.3);
+  font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); cursor: pointer; text-decoration: none; transition: all 0.25s;
+}
+.group-pill:hover, .group-pill.active {
+  background: var(--steel2); border-color: var(--steel2); color: white;
+  box-shadow: 0 2px 12px rgba(59,111,212,0.4);
+}
+
+/* Gallery wrap */
+.gallery-wrap { padding: 60px 5% 80px; position: relative; z-index: 1; }
+
+.gallery-section { margin-bottom: 72px; }
+.section-head { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid rgba(59,111,212,0.1); }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--steel2); font-weight: 600; margin-bottom: 8px;
+}
+.section-tag::before { content: ''; width: 20px; height: 2px; background: var(--steel2); border-radius: 99px; }
+.section-head h2 { font-family: 'Playfair Display',serif; font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: var(--dark); }
+.section-head p { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+
+/* Gallery grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+@media(max-width: 600px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+.gallery-card {
+  aspect-ratio: 1/1;
+  border-radius: 14px; overflow: hidden;
+  position: relative; cursor: pointer;
+  border: 1px solid rgba(59,111,212,0.1);
+  transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+}
+.gallery-card:hover { transform: scale(1.04) translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); z-index: 2; }
+
+.grp-gates .gallery-card     { background: linear-gradient(135deg, #E8F0FA, #D8E8F8); }
+.grp-grilles .gallery-card   { background: linear-gradient(135deg, #E8EAF8, #D8DCF8); }
+.grp-furniture .gallery-card { background: linear-gradient(135deg, #F0F0E0, #E8E8D0); }
+.grp-structural .gallery-card{ background: linear-gradient(135deg, #F0E8F0, #E8D8E8); }
+.grp-steel .gallery-card     { background: linear-gradient(135deg, #E0F0F0, #D0E8E8); }
+
+/* REPLACE: inside .gallery-card add <img src="images/fabrication/fab-XX.jpg" style="width:100%;height:100%;object-fit:cover;"> */
+.card-inner {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; padding: 16px; text-align: center;
+}
+.card-emoji { font-size: 36px; transition: transform 0.4s; }
+.gallery-card:hover .card-emoji { transform: scale(1.2) rotate(-5deg); }
+.card-label {
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  font-weight: 700; color: var(--steel); line-height: 1.3;
+}
+.card-num {
+  font-family: 'Playfair Display',serif;
+  font-size: 22px; font-weight: 900;
+  color: var(--steel2); line-height: 1;
+}
+
+.card-overlay {
+  position: absolute; inset: 0; border-radius: 14px;
+  background: linear-gradient(180deg, transparent 40%, rgba(42,53,80,0.88));
+  opacity: 0; transition: opacity 0.35s;
+  display: flex; align-items: flex-end; padding: 14px;
+}
+.gallery-card:hover .card-overlay { opacity: 1; }
+.overlay-text { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; }
+
+/* Quality strip */
+.quality-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(59,111,212,0.1);
+  border-radius: 16px; overflow: hidden; margin-bottom: 72px;
+}
+.qs-item { padding: 32px 20px; text-align: center; background: white; }
+.qs-num { font-family: 'Playfair Display',serif; font-size: 36px; font-weight: 900; background: linear-gradient(135deg, var(--steel), var(--steel2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 6px; }
+.qs-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+@media(max-width:500px) { .quality-strip { grid-template-columns: 1fr; } }
+
+/* Lightbox */
+#lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.95); backdrop-filter: blur(12px);
+  display: none; align-items: center; justify-content: center; padding: 24px;
+}
+#lightbox.open { display: flex; }
+.lb-inner {
+  background: var(--steel); border-radius: 20px; overflow: hidden;
+  max-width: 600px; width: 100%;
+  border: 1px solid rgba(59,111,212,0.3);
+  animation: lbIn 0.35s cubic-bezier(0.165,0.84,0.44,1);
+}
+@keyframes lbIn { from{transform:scale(0.88);opacity:0} to{transform:scale(1);opacity:1} }
+.lb-img {
+  aspect-ratio: 4/3; width: 100%;
+  background: linear-gradient(135deg, #2A355022, #3B6FD433);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+}
+.lb-img-icon { font-size: 64px; }
+.lb-img-placeholder { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.lb-body { padding: 24px 28px 28px; }
+.lb-title { font-family: 'Playfair Display',serif; font-size: 22px; font-weight: 700; color: white; margin-bottom: 6px; }
+.lb-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 20px; }
+.lb-footer { display: flex; gap: 12px; align-items: center; }
+.lb-close { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: white; padding: 10px 20px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+.lb-close:hover { background: rgba(255,255,255,0.14); }
+.lb-wa { display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: white; padding: 10px 20px; border-radius: 8px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+.lb-wa:hover { box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+
+/* Back */
+.back-home-wrap { text-align: center; padding: 20px 5% 60px; position: relative; z-index: 1; }
+.back-home-btn { display: inline-flex; align-items: center; gap: 10px; border: 1.5px solid rgba(59,111,212,0.25); color: var(--dark); padding: 13px 28px; border-radius: 8px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+.back-home-btn:hover { border-color: var(--steel2); color: var(--steel2); transform: translateY(-2px); }
+
+/* Footer */
+footer { background: var(--steel); padding: 32px 5%; text-align: center; border-top: 1px solid rgba(59,111,212,0.2); }
+.footer-brand { font-family: 'Playfair Display',serif; font-size: 18px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+.footer-copy span { color: var(--gold); }
+
+/* Floating */
+.floating-wrap { position: fixed; bottom: 28px; right: 24px; z-index: 999; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.float-wa { width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.5); animation: waPulse 2s ease infinite; transition: transform 0.3s; }
+.float-wa:hover { transform: scale(1.15); animation: none; }
+@keyframes waPulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)} 50%{box-shadow:0 4px 32px rgba(37,211,102,0.8),0 0 0 8px rgba(37,211,102,0.15)} }
+.float-wa svg { width: 28px; height: 28px; fill: white; }
+.float-ig { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 16px rgba(220,39,67,0.4); transition: transform 0.3s, box-shadow 0.3s; }
+.float-ig:hover { transform: scale(1.15) rotate(8deg); }
+.float-ig svg { width: 24px; height: 24px; fill: white; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="ambient"><div class="ab ab1"></div><div class="ab ab2"></div><div class="ab ab3"></div></div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-brand">Mauli <span>Kitchen Trolly &amp; Fabricators</span></div>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+</nav>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="hero-eyebrow">Portfolio · Fabrication Works</div>
+  <h1>Fabrication <em>Works</em></h1>
+  <div class="hero-tagline">
+    <span>Strong</span><span>Stylish</span><span>Precision Crafted</span>
+  </div>
+  <div class="hero-line"></div>
+</div>
+
+<!-- Group nav -->
+<div class="group-nav">
+  <a href="#gates" class="group-pill active">Gates</a>
+  <a href="#grilles" class="group-pill">Grilles</a>
+  <a href="#furniture" class="group-pill">Furniture Frames</a>
+  <a href="#structural" class="group-pill">Structural</a>
+  <a href="#steel" class="group-pill">Steel Work</a>
+</div>
+
+<!-- Quality strip -->
+<div class="gallery-wrap">
+<div class="quality-strip reveal">
+  <div class="qs-item"><div class="qs-num">500+</div><div class="qs-label">Projects Done</div></div>
+  <div class="qs-item"><div class="qs-num">8+</div><div class="qs-label">Years Experience</div></div>
+  <div class="qs-item"><div class="qs-num">100%</div><div class="qs-label">Quality Work</div></div>
+</div>
+
+<!-- GATES -->
+<div class="gallery-section" id="gates">
+  <div class="section-head reveal">
+    <div class="section-tag">Category 01</div>
+    <h2>Gates</h2>
+    <p>Sturdy, stylish entry gates crafted in steel — from simple designs to ornate custom work.</p>
+  </div>
+  <div class="gallery-grid grp-gates reveal" id="grid-gates"></div>
+</div>
+
+<!-- GRILLES -->
+<div class="gallery-section" id="grilles">
+  <div class="section-head reveal">
+    <div class="section-tag">Category 02</div>
+    <h2>Grilles</h2>
+    <p>Window and door grilles combining security with aesthetic elegance for homes and offices.</p>
+  </div>
+  <div class="gallery-grid grp-grilles reveal" id="grid-grilles"></div>
+</div>
+
+<!-- FURNITURE FRAMES -->
+<div class="gallery-section" id="furniture">
+  <div class="section-head reveal">
+    <div class="section-tag">Category 03</div>
+    <h2>Furniture Frames</h2>
+    <p>Steel and iron furniture frames built for durability — beds, tables, chairs, and more.</p>
+  </div>
+  <div class="gallery-grid grp-furniture reveal" id="grid-furniture"></div>
+</div>
+
+<!-- STRUCTURAL -->
+<div class="gallery-section" id="structural">
+  <div class="section-head reveal">
+    <div class="section-tag">Category 04</div>
+    <h2>Structural Fabrication</h2>
+    <p>Heavy-duty structural work including trusses, supports, staircases, and framework.</p>
+  </div>
+  <div class="gallery-grid grp-structural reveal" id="grid-structural"></div>
+</div>
+
+<!-- STEEL WORK -->
+<div class="gallery-section" id="steel">
+  <div class="section-head reveal">
+    <div class="section-tag">Category 05</div>
+    <h2>Steel Work</h2>
+    <p>Precision steel fabrication — custom pieces, railings, shelving brackets, and specialty items.</p>
+  </div>
+  <div class="gallery-grid grp-steel reveal" id="grid-steel"></div>
+</div>
+
+</div><!-- /gallery-wrap -->
+
+<div class="back-home-wrap">
+  <a href="index.html" class="back-home-btn">← Return to Home</a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">Mauli Kitchen Trolly &amp; Fabricators</div>
+  <div class="footer-copy">© 2026 <span>Mauli Kitchen Trolly &amp; Fabricators</span>. All rights reserved.</div>
+</footer>
+
+<!-- Floating Buttons -->
+<div class="floating-wrap">
+  <a href="https://www.instagram.com/maulikitchentrolley12345?igsh=bHhsYjd6YXZrMHhu" target="_blank" class="float-ig">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  </a>
+  <a href="https://wa.me/919921932038" target="_blank" class="float-wa">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <div class="lb-inner">
+    <div class="lb-img" id="lbImg">
+      <div class="lb-img-icon" id="lbIcon">⚙️</div>
+      <div class="lb-img-placeholder" id="lbPlaceholder">FABRICATION 01</div>
+    </div>
+    <div class="lb-body">
+      <div class="lb-title" id="lbTitle">Fabrication 01</div>
+      <div class="lb-desc" id="lbDesc">Premium fabrication work by Mauli Kitchen Trolly & Fabricators, Dhayri, Pune.</div>
+      <div class="lb-footer">
+        <button class="lb-close" onclick="closeLightbox()">✕ Close</button>
+        <a href="https://wa.me/919921932038?text=Hi%2C%20I%27m%20interested%20in%20your%20fabrication%20work" target="_blank" class="lb-wa">
+          <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Enquire Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const groups = [
+  {
+    id: 'grid-gates', label: 'Gate', emoji: '🚪', count: 10,
+    descs: [
+      'Double-leaf compound entry gate','Single sliding gate with motor provision','Ornate driveway gate with scroll work','Simple flat bar entry gate','Arch-top main door gate','Powder-coated black compound gate','Laser-cut decorative gate panel','Heavy-duty factory gate','Garden wicket gate','Collapsible security gate'
+    ]
+  },
+  {
+    id: 'grid-grilles', label: 'Grille', emoji: '🔲', count: 10,
+    descs: [
+      'Fixed window safety grille','Openable casement window grille','Sliding ventilation grille','Decorative MS bar grille','Vertical bar door grille','Floral pattern window grille','Flat bar anti-burglar grille','Staircase baluster grille','Balcony safety railing grille','Air conditioner protection grille'
+    ]
+  },
+  {
+    id: 'grid-furniture', label: 'Furniture Frame', emoji: '🪑', count: 10,
+    descs: [
+      'Queen-size steel bed frame','SS dining table base','Study table MS frame','L-shaped sofa frame','Rocking chair steel base','Centre table metal frame','Wardrobe steel frame skeleton','Bunk bed heavy-duty frame','Shoe rack steel frame','Display shelf wall-mount frame'
+    ]
+  },
+  {
+    id: 'grid-structural', label: 'Structural', emoji: '🏗️', count: 10,
+    descs: [
+      'Roof truss framework','MS staircase with railing','Pergola/shade structure','Mezzanine floor support','Industrial shelving rack','Car parking shed structure','Overhead water tank platform','Channel and angle iron framework','Heavy industrial racking','Canopy and cantilevered shade'
+    ]
+  },
+  {
+    id: 'grid-steel', label: 'Steel Work', emoji: '⚙️', count: 10,
+    descs: [
+      'Custom SS railing for staircase','Handrail with glass infill','SS wall-mounted bracket shelves','MS pipe column cladding','Steel mesh panel partition','Anchor bolt fabrication','Custom machine guard housing','Industrial cable tray fabrication','MS ventilation hood','Precision cut-to-size steel plate work'
+    ]
+  }
+];
+
+let globalCount = 0;
+groups.forEach(grp => {
+  const grid = document.getElementById(grp.id);
+  if (!grid) return;
+  for (let i = 0; i < grp.count; i++) {
+    globalCount++;
+    const num = String(globalCount).padStart(2,'0');
+    const desc = grp.descs[i] || grp.label;
+    const card = document.createElement('div');
+    card.className = 'gallery-card';
+    // REPLACE: Replace .card-inner with an <img> when real photos are ready
+    card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-emoji">${grp.emoji}</div>
+        <div class="card-num">${num}</div>
+        <div class="card-label">${grp.label}</div>
+      </div>
+      <div class="card-overlay">
+        <span class="overlay-text">View Work</span>
+      </div>
+    `;
+    card.addEventListener('click', () => openLightbox(grp.emoji, `${grp.label} ${num}`, desc, `FABRICATION ${num}`));
+    grid.appendChild(card);
+  }
+});
+
+function openLightbox(emoji, title, desc, placeholder) {
+  document.getElementById('lbIcon').textContent = emoji;
+  document.getElementById('lbTitle').textContent = title;
+  document.getElementById('lbDesc').textContent = desc + ' · Crafted by Mauli Kitchen Trolly & Fabricators, Dhayri, Pune.';
+  document.getElementById('lbPlaceholder').textContent = placeholder;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', function(e) { if(e.target===this) closeLightbox(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+reveals.forEach(el => obs.observe(el));
+
+const sections = ['gates','grilles','furniture','structural','steel'];
+const pills = document.querySelectorAll('.group-pill');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 160) current = id;
+  });
+  pills.forEach(p => { p.classList.toggle('active', p.getAttribute('href') === '#' + current); });
+});
+</script>
+</body>
+</html>
